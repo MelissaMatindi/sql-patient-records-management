@@ -2,6 +2,7 @@ CREATE DATABASE patient_records_db;
 USE patient_records_db;
 
 -- Table for Patients (core entity for EHR)
+-- Table for Patients (core entity for EHR)
 CREATE TABLE Patients (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
@@ -9,8 +10,7 @@ CREATE TABLE Patients (
     date_of_birth DATE NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(15),
-    address TEXT,
-    CONSTRAINT chk_dob CHECK (date_of_birth < CURDATE())
+    address TEXT
 );
 
 -- Table for Doctors (healthcare providers)
@@ -36,7 +36,7 @@ CREATE TABLE Visits (
 CREATE TABLE MedicalHistories (
     history_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
-    condition VARCHAR(200) NOT NULL,
+    medical_condition VARCHAR(200) NOT NULL,
     diagnosis_date DATE NOT NULL,
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE
 );
